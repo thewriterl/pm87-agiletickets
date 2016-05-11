@@ -13,7 +13,7 @@ public class CalculadoraDePrecos {
 		
 	}
 	
-	private static double calc(Sessao sessao) {
+	private static double calculaRazao(Sessao sessao) {
 		return (sessao.getTotalIngressos() - sessao.getIngressosReservados()) / sessao.getTotalIngressos().doubleValue();
 	}
 	
@@ -27,7 +27,7 @@ public class CalculadoraDePrecos {
 		
 		if(sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.CINEMA) || sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.SHOW)) {
 			//quando estiver acabando os ingressos... 
-			if(calc(sessao) <= 0.05) { 
+			if(calculaRazao(sessao) <= 0.05) { 
 				preco = calculaPreco(sessao,0.10);
 			} else {
 				preco = sessao.getPreco();
@@ -35,7 +35,7 @@ public class CalculadoraDePrecos {
 			
 			
 		} else if(sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.BALLET) || sessao.getEspetaculo().getTipo().equals(TipoDeEspetaculo.ORQUESTRA))  {
-			if(calc(sessao) <= 0.50) { 
+			if(calculaRazao(sessao) <= 0.50) { 
 				preco = calculaPreco(sessao, 0.20);
 			} else {
 				preco = sessao.getPreco();
