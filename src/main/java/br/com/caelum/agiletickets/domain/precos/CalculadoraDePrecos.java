@@ -16,6 +16,11 @@ public class CalculadoraDePrecos {
 	private static double calc(Sessao sessao) {
 		return (sessao.getTotalIngressos() - sessao.getIngressosReservados()) / sessao.getTotalIngressos().doubleValue();
 	}
+	
+	private static BigDecimal calculaTaxaTempo(Sessao sessao) {
+		return sessao.getPreco().multiply(BigDecimal.valueOf(0.10));
+	}
+	
 
 	public static BigDecimal calcula(Sessao sessao, Integer quantidade) {
 		BigDecimal preco;
@@ -37,7 +42,7 @@ public class CalculadoraDePrecos {
 			}
 			
 			if(sessao.getDuracaoEmMinutos() > 60){
-				preco = preco.add(sessao.getPreco().multiply(BigDecimal.valueOf(0.10)));
+				preco = preco.add(calculaTaxaTempo(sessao));
 			}
 			
 	
